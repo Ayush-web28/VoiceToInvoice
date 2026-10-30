@@ -77,7 +77,7 @@ export interface InvoiceData {
   createdAt: string;
   updatedAt: string;
   metadata?: {
-    sourceType?: 'voice' | 'image' | 'text' | 'manual';
+    sourceType?: 'voice' | 'image' | 'vision' | 'text' | 'manual';
     rawTranscript?: string;
     confidenceScore?: number;
   };
