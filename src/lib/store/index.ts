@@ -1,9 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { InvoiceData, ClientProfile } from '@/types';
 
-// Storage file location for persistence
-const DATA_DIR = path.join(process.cwd(), '.data');
+// Storage file location for persistence (safe for local, Docker, and Vercel/serverless)
+const DATA_DIR =
+  process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY
+    ? path.join(os.tmpdir(), 'voicetoinvoice-data')
+    : path.join(process.cwd(), '.data');
 const INVOICES_FILE = path.join(DATA_DIR, 'invoices.json');
 const CLIENTS_FILE = path.join(DATA_DIR, 'clients.json');
 
